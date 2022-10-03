@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import dbCon.SqlDbConnection;
@@ -14,13 +15,13 @@ public class BoardDao {
 	
 	private SqlDbConnection dbCon = new SqlDbConnection();;
 	
-	public Vector<BoardDto> boardList(){
+	public ArrayList<BoardDto> boardList(){
 		Connection con;
 		Statement stmt;
 		PreparedStatement pstmt;
 		ResultSet rs;
 		
-		Vector<BoardDto> vlist = new Vector<>();
+		ArrayList<BoardDto> list = new ArrayList<>();
 		
 		
 		try {
@@ -37,7 +38,7 @@ public class BoardDao {
 				bean.setTitle(rs.getString("title"));
 				bean.setWriter(rs.getString("writer"));
 				
-				vlist.add(bean);
+				list.add(bean);
 			}
 			
 			//con, pstmt, rs close
@@ -48,7 +49,7 @@ public class BoardDao {
 			System.out.print("boardList DB 에러");	
 		}
 		
-		return vlist;
+		return list;
 	}
 
 }
