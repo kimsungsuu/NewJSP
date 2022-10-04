@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -28,7 +29,7 @@ public class BoardDao {
 			//mysql db connection
 		    con = dbCon.getConnection();
 			
-			String sql = "select * from board_tb";
+			String sql = "select * from board_tb order by num desc";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -37,6 +38,10 @@ public class BoardDao {
 				
 				bean.setTitle(rs.getString("title"));
 				bean.setWriter(rs.getString("writer"));
+				bean.setCategory(rs.getString("category"));
+				bean.setCreate_date(rs.getDate("create_date"));
+				bean.setMod_date(rs.getDate("mod_date"));
+				bean.setHit(rs.getInt("hit"));
 				
 				list.add(bean);
 			}
@@ -51,5 +56,6 @@ public class BoardDao {
 		
 		return list;
 	}
-
+	
+	
 }
