@@ -16,6 +16,7 @@ public class BoardDao {
 	
 	private SqlDbConnection dbCon = new SqlDbConnection();;
 	
+	//게시글 리스트 출력
 	public ArrayList<BoardDto> boardList(){
 		Connection con;
 		Statement stmt;
@@ -25,11 +26,13 @@ public class BoardDao {
 		ArrayList<BoardDto> list = new ArrayList<>();
 		
 		
+		
 		try {
 			//mysql db connection
 		    con = dbCon.getConnection();
 			
-			String sql = "select * from board_tb order by num desc";
+		    //어떻게 하면 10개의 게시글을 내림차순으로 가져올 수 있을까.
+			String sql = "select * from board_tb limit 10";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -55,6 +58,38 @@ public class BoardDao {
 		}
 		
 		return list;
+	}
+	
+	// 작성한 글 저장
+	public void boardPost(String title, String category, String writer, String password, String text) {
+		Connection con;
+		Statement stmt;
+		PreparedStatement pstmt;
+		ResultSet rs;
+	
+		
+		try {
+			con = dbCon.getConnection();
+			String sql = "insert into board_tb(title, category, wirter, password, text, create_date, mod_date, hit) value(?,?,?,?,?,now(),now(),1)";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(0, title);
+			pstmt.setString(1, category);
+			pstmt.setString(2, writer);
+			pstmt.setString(3, password);
+			pstmt.setString(4, text);
+		
+			
+			pstmt.executeUpdate();
+			
+			System.out.println("boardPost 작업 성공!");
+			
+			dbCon.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("boardPost 메서드 SQL 에러입니다.");
+		}
+		
 	}
 	
 	

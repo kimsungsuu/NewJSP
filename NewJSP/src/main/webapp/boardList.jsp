@@ -54,7 +54,8 @@
 		%>
 
 	</table>
-
+	
+	<input type="button" onclick="location.href='boardPost.jsp'" value="등록">
 
 </body>
 </html>
