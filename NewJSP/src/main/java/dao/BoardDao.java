@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.servlet.http.HttpServletRequest;
+
 import dbCon.SqlDbConnection;
 import dto.BoardDto;
 
@@ -32,13 +34,13 @@ public class BoardDao {
 		    con = dbCon.getConnection();
 			
 		    //어떻게 하면 10개의 게시글을 내림차순으로 가져올 수 있을까.
-			String sql = "select * from board_tb limit 10";
+			String sql = "select * from board_tb order by num desc";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				BoardDto bean = new BoardDto();
-				
+			
 				bean.setTitle(rs.getString("title"));
 				bean.setWriter(rs.getString("writer"));
 				bean.setCategory(rs.getString("category"));
@@ -61,7 +63,7 @@ public class BoardDao {
 	}
 	
 	// 작성한 글 저장
-	public void boardPost(String title, String category, String writer, String password, String text) {
+	public void insertBoard(HttpServletRequest request) {
 		Connection con;
 		Statement stmt;
 		PreparedStatement pstmt;
@@ -70,16 +72,16 @@ public class BoardDao {
 		
 		try {
 			con = dbCon.getConnection();
-			String sql = "insert into board_tb(title, category, wirter, password, text, create_date, mod_date, hit) value(?,?,?,?,?,now(),now(),1)";
+			String sql = "insert into board_tb(title, category, writer, password, text, create_date, mod_date) value(?,?,?,?,?,now(),now())";
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(0, title);
-			pstmt.setString(1, category);
-			pstmt.setString(2, writer);
-			pstmt.setString(3, password);
-			pstmt.setString(4, text);
+			pstmt.setString(1, request.getParameter("title"));
+			pstmt.setString(2, request.getParameter("category"));
+			pstmt.setString(3, request.getParameter("writer"));
+			pstmt.setString(4, request.getParameter("password"));
+			pstmt.setString(5, request.getParameter("text"));
 		
-			
+		
 			pstmt.executeUpdate();
 			
 			System.out.println("boardPost 작업 성공!");

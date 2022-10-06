@@ -22,22 +22,16 @@ public class PostServlet extends HttpServlet{
 		
 	PrintWriter out = response.getWriter();
 		
-	request.setCharacterEncoding("EUC-KR");
-	response.setContentType("text/html; charset=EUC-KR");
-	
-	String title = request.getParameter("title");
-	String category = request.getParameter("category");
-	String password = request.getParameter("password");
-	String writer= request.getParameter("writer");
-	String text = request.getParameter("text");
+	request.setCharacterEncoding("UTF-8");
+
 	
 	// 게시글 저장 로직 호출(dao)
 	BoardDao dao = new BoardDao();
-	dao.boardPost(title, category, writer, password, text);
+	dao.insertBoard(request);
 	
 	// 서블릿 처리된 데이터를 정적 페이지로 웹서버에 보내줌(redirect)
 	
-	response.sendRedirect("boardList.js p");
+	response.sendRedirect("boardList.jsp");
 	
 	out.print("실행 Test!!");
 }

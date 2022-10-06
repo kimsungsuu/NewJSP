@@ -4,6 +4,9 @@
 <%@page import="dao.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%
+		request.setCharacterEncoding("UTF-8");
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +16,7 @@
 <body>
 
 	<h2>게시판 간략하게 출력</h2>
-
+	<input type="button" onclick="location.href='boardPost.jsp'" value="등록">
 	<table border="1">
 		<tr align="center">
 			<td>번호</td>
@@ -27,6 +30,9 @@
 
 
 		<%
+		int num = Integer.parseInt(request.getParameter("num"));
+		
+		
 		BoardDao dao = new BoardDao();
 
 		ArrayList<BoardDto> list = new ArrayList<>();
@@ -40,8 +46,8 @@
 		%>
 		<tr>
 			<td><%=count-- %></td>
-			<td><%=bean.getCategory() %>
-			<td><%=bean.getTitle()%>
+			<td><%=bean.getCategory() %></td>
+			<td><a href="boardRead.jsp?num="<%=num%>><%=bean.getTitle()%></a></td>
 			<td><%=bean.getWriter()%></td>
 			<td><%=bean.getHit() %>
 			<td><%=bean.getCreate_date()%></td>
@@ -54,8 +60,6 @@
 		%>
 
 	</table>
-	
-	<input type="button" onclick="location.href='boardPost.jsp'" value="등록">
 
 </body>
 </html>
