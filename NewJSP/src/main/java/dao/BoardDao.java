@@ -41,6 +41,7 @@ public class BoardDao {
 			while(rs.next()) {
 				BoardDto bean = new BoardDto();
 			
+				bean.setNum(rs.getInt("num"));
 				bean.setTitle(rs.getString("title"));
 				bean.setWriter(rs.getString("writer"));
 				bean.setCategory(rs.getString("category"));
@@ -92,6 +93,73 @@ public class BoardDao {
 			System.out.println("boardPost 메서드 SQL 에러입니다.");
 		}
 		
+	}
+	
+	//게시글 읽기
+	public BoardDto readBoard(String num) {
+		
+		BoardDto bean = new BoardDto();
+		
+		Connection con;
+		Statement stmt;
+		PreparedStatement pstmt;
+		ResultSet rs;
+	
+		try {
+			con = dbCon.getConnection();
+			String sql = "select category, title, writer, text from board_tb where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, num);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				bean.setCategory(rs.getString("category"));
+				bean.setTitle(rs.getString("title"));
+				bean.setWriter(rs.getString("writer"));
+				bean.setText(rs.getString("text"));
+			}
+			
+			dbCon.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("readBoard 메서드 DB 로직 에러입니다!");
+		}
+		
+		
+		return bean;
+	}
+	
+	//게시판 수정
+	public void updateBoard(HttpServletRequest request) {
+		
+		String title = request.getParameter("title");
+		String category = request.getParameter("category");
+		String writer = request.getParameter("writer");
+		String text = request.getParameter("text");
+		String num = request.getParameter("num");
+		
+		Connection con;
+		Statement stmt;
+		PreparedStatement pstmt;
+		ResultSet rs;
+	
+		try {
+			con = dbCon.getConnection();
+			String sql = "update board_tb set title=?, category=?, writer=?, text=?, mod_date=now() where num=?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, category);
+			pstmt.setString(3, writer);
+			pstmt.setString(4, text);
+			pstmt.setString(5, num);
+			
+			pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("updateBoard SQL 에러입니다!");
+		}
 	}
 	
 	

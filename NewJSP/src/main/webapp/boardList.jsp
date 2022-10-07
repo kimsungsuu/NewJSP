@@ -1,9 +1,9 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="dto.BoardDto"%>
-<%@page import="java.util.Vector"%>
 <%@page import="dao.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:useBean id="dao" class="dao.BoardDao"/>
 	<%
 		request.setCharacterEncoding("UTF-8");
 	%>
@@ -29,12 +29,7 @@
 		</tr>
 
 
-		<%
-		int num = Integer.parseInt(request.getParameter("num"));
-		
-		
-		BoardDao dao = new BoardDao();
-
+		<%	
 		ArrayList<BoardDto> list = new ArrayList<>();
 
 		list = dao.boardList();
@@ -47,7 +42,7 @@
 		<tr>
 			<td><%=count-- %></td>
 			<td><%=bean.getCategory() %></td>
-			<td><a href="boardRead.jsp?num="<%=num%>><%=bean.getTitle()%></a></td>
+			<td><a href="boardRead.jsp?num=<%=bean.getNum()%>"><%=bean.getTitle()%></a></td>
 			<td><%=bean.getWriter()%></td>
 			<td><%=bean.getHit() %>
 			<td><%=bean.getCreate_date()%></td>

@@ -8,6 +8,7 @@ public class BoardDto {
 	private String title;
 	private String writer;
 	private String category;
+	private String text;
 	private int hit;
 	private Date create_date;
 	private Date mod_date;
@@ -58,6 +59,12 @@ public class BoardDto {
 	}
 	public void setMod_date(Date mod_date) {
 		this.mod_date = mod_date;
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
+	public String getText() {
+		return text;
 	}
 	
 	
