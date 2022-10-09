@@ -49,6 +49,18 @@
  > - DB에 담겨져 있던 데이터를 bean = readBoard(num)으로 불러와서 각 항목에 반환(게시판 읽기 기능과 같은 방식)
  > - 클라이언트 요청을 처리하는 UpdateServlet.java 생성 dao.updateBoard(num) 호출 후 response.sendRedirect("boardRead.jsp?num="+num);로 수정된 결과를 확인하는 페이지로 이동
 
+</br>
+</br>
+
+ # ✔️2022.10.07
+ 
+ #### 게시판 페이징 기능 구현
+ >
+ > - 페이징 관련 변수 생성
+ > - Dao 쿼리문, 로직 수정(boardList(pageNum)), limit startNum, endNum;
+ > - boardList에서 pageNum 생성 후 dao.boardList(pageNum)으로 보내줌
+ > - pageNum이 String이면서 null 값이기 때문에 null 값일 때 "1";로 설정해준 뒤 int pageNum = Integer.parseInt(stPageNum)으로 설정해줘서 boardList(pageNum) 인자로 보내줌
+ 
  
 
 
