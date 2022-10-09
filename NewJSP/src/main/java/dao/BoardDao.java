@@ -14,28 +14,43 @@ import javax.servlet.http.HttpServletRequest;
 import dbCon.SqlDbConnection;
 import dto.BoardDto;
 
+/*
+ * boardList() //게시글 리스트 출력
+ * insertBoard() // 게시글 등록
+ * readBoard() // 게시글 읽기
+ * updateBoard() // 게시글 수정
+ * deleteBoard() // 게시글 삭제
+ * */
+
 public class BoardDao {
 	
 	private SqlDbConnection dbCon = new SqlDbConnection();;
 	
 	//게시글 리스트 출력
-	public ArrayList<BoardDto> boardList(){
+	public ArrayList<BoardDto> boardList(int pageNum){
 		Connection con;
 		Statement stmt;
 		PreparedStatement pstmt;
-		ResultSet rs;
+		ResultSet rs;	
+	
+		//페이지 별 첫 게시글
+		int startNum = (10*(pageNum-1));
+		
+		//한 페이지에 출력 가능 게시글 수
+		int endNum = 10;
 		
 		ArrayList<BoardDto> list = new ArrayList<>();
-		
-		
 		
 		try {
 			//mysql db connection
 		    con = dbCon.getConnection();
-			
+		    
 		    //어떻게 하면 10개의 게시글을 내림차순으로 가져올 수 있을까.
-			String sql = "select * from board_tb order by num desc";
+			String sql = "select * from board_tb order by num desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, endNum);
+			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -59,7 +74,7 @@ public class BoardDao {
 			e.printStackTrace();
 			System.out.print("boardList DB 에러");	
 		}
-		
+
 		return list;
 	}
 	
@@ -159,6 +174,28 @@ public class BoardDao {
 		}catch(SQLException e) {
 			e.printStackTrace();
 			System.out.println("updateBoard SQL 에러입니다!");
+		}
+	}
+	
+	//게시글 삭제
+	public void deleteBoard(String num) {
+		Connection con;
+		Statement stmt;
+		PreparedStatement pstmt;
+		ResultSet rs;
+	
+		try {
+			con = dbCon.getConnection();
+			String sql = "delete from board_tb where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			pstmt.executeUpdate();
+			
+			dbCon.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("deleteBoard SQL Error!!");
 		}
 	}
 	

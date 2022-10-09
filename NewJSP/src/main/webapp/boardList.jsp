@@ -11,11 +11,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>boardList</title>
 </head>
 <body>
-
-	<h2>게시판 간략하게 출력</h2>
 	<input type="button" onclick="location.href='boardPost.jsp'" value="등록">
 	<table border="1">
 		<tr align="center">
@@ -28,11 +26,19 @@
 			<td>수정 일자</td>
 		</tr>
 
-
 		<%	
 		ArrayList<BoardDto> list = new ArrayList<>();
-
-		list = dao.boardList();
+		
+		String stPageNum = request.getParameter("pageNum");
+		
+		if(stPageNum == null){
+			stPageNum="1";
+		}
+		
+		int pageNum = Integer.parseInt(stPageNum);
+		
+		
+		list = dao.boardList(pageNum);
 		
 		int count  = list.size();
 
@@ -47,14 +53,17 @@
 			<td><%=bean.getHit() %>
 			<td><%=bean.getCreate_date()%></td>
 			<td><%=bean.getMod_date()%></td>
-			
 		</tr>
-		
 		<%
 		}
 		%>
-
 	</table>
-
+		<%
+		for(int i=1; i<=10; i++){
+		%>
+			<a href="boardList.jsp?pageNum=<%=i%>"><%=i%></a>
+		<%
+		}
+		%>
 </body>
 </html>
