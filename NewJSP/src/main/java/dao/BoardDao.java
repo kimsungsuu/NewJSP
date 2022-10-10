@@ -15,6 +15,7 @@ import dbCon.SqlDbConnection;
 import dto.BoardDto;
 
 /*
+ * cnt() // num 갯수 반환 메서드
  * boardList() //게시글 리스트 출력
  * insertBoard() // 게시글 등록
  * readBoard() // 게시글 읽기
@@ -24,7 +25,36 @@ import dto.BoardDto;
 
 public class BoardDao {
 	
-	private SqlDbConnection dbCon = new SqlDbConnection();;
+	private SqlDbConnection dbCon = new SqlDbConnection();
+	
+	
+	//페이지 번호 개수 설정을 위해 게시글 개수를 반환
+	public int cnt() {
+		Connection con;
+		Statement stmt;
+		PreparedStatement pstmt;
+		ResultSet rs;	
+		
+		int cnt=0;
+		
+		try {
+			con = dbCon.getConnection();
+			String sql = "select count(num) as cnt from board_tb";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+			cnt = rs.getInt("cnt");
+			}
+			
+			dbCon.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("cnt 메서드 에러입니다!!");
+		}
+		
+		return cnt;
+	}
 	
 	//게시글 리스트 출력
 	public ArrayList<BoardDto> boardList(int pageNum){
@@ -44,8 +74,6 @@ public class BoardDao {
 		try {
 			//mysql db connection
 		    con = dbCon.getConnection();
-		    
-		    //어떻게 하면 10개의 게시글을 내림차순으로 가져올 수 있을까.
 			String sql = "select * from board_tb order by num desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startNum);
