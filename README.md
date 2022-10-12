@@ -52,9 +52,9 @@
 </br>
 </br>
 
- # ✔️2022.10.07
+ # ✔️2022.10.09
  
- ### 게시판 삭제 기능 구현
+ #### 게시판 삭제 기능 구현
  >
  > - servlet.java에서 num 파라미터 값을 boardDelete()메소드에 넘겨줌
  > - num 값에 해당하는 게시글 delete 쿼리문 실행
@@ -66,6 +66,14 @@
  > - boardList에서 pageNum 생성 후 dao.boardList(pageNum)으로 보내줌
  > - pageNum이 String이면서 null 값이기 때문에 null 값일 때 "1";로 설정해준 뒤 int pageNum = Integer.parseInt(stPageNum)으로 설정해줘서 boardList(pageNum) 인자로 보내줌
  
- 
+</br>
+</br>
 
+ # ✔️2022.10.10
+
+#### 게시판 페이징 기능 구현 완성
+>
+> - pageBlock, startPage, endPage, nextBlock, prevBlock, cnt(페이지 번호 개수)
+> - BoardDao.java 파일에 게시글 개수를 반환하는 로직 추가
+> - next, prev 버튼 구현
 
