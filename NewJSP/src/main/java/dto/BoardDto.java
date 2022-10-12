@@ -12,6 +12,8 @@ public class BoardDto {
 	private int hit;
 	private Date create_date;
 	private Date mod_date;
+	
+	
 	public int getNum() {
 		return num;
 	}
@@ -66,8 +68,4 @@ public class BoardDto {
 	public String getText() {
 		return text;
 	}
-	
-	
-	
-
 }

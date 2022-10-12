@@ -125,7 +125,6 @@ public class BoardDao {
 			pstmt.setString(4, request.getParameter("password"));
 			pstmt.setString(5, request.getParameter("text"));
 		
-		
 			pstmt.executeUpdate();
 			
 			System.out.println("boardPost 작업 성공!");
@@ -225,6 +224,43 @@ public class BoardDao {
 			e.printStackTrace();
 			System.out.println("deleteBoard SQL Error!!");
 		}
+	}
+	
+	//게시글 검색
+	public ArrayList<BoardDto> searchBoard(String search){
+		Connection con;
+		Statement stmt;
+		PreparedStatement pstmt;
+		ResultSet rs;
+		
+		ArrayList<BoardDto> searchList = new ArrayList<>();
+		
+		try {
+			con = dbCon.getConnection();
+			String sql = "select * from board_tb where title like ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "'%"+search+"%'");
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BoardDto bean = new BoardDto();
+				
+				bean.setNum(rs.getInt("num"));
+				bean.setTitle(rs.getString("title"));
+				bean.setWriter(rs.getString("writer"));
+				bean.setCategory(rs.getString("category"));
+				bean.setCreate_date(rs.getDate("create_date"));
+				bean.setMod_date(rs.getDate("mod_date"));
+				bean.setHit(rs.getInt("hit"));
+				
+				searchList.add(bean);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("searchBoard 메서드 에러입니다.");
+		}
+		
+		return searchList;
 	}
 	
 	
