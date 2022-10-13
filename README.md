@@ -77,3 +77,14 @@
 > - BoardDao.java 파일에 게시글 개수를 반환하는 로직 추가
 > - next, prev 버튼 구현
 
+</br>
+</br>
+
+ # ✔️2022.10.12
+ 
+ #### 게시판 검색 기능 구현(미완성) 및 약간의 코드 정리
+ >
+ > - searchBoard.jsp 추가
+ > - searchBoard() 메서드 추가
+
+
