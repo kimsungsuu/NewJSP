@@ -18,10 +18,16 @@ public class DeleteServlet extends HttpServlet{
 			throws ServletException, IOException {
 		
 		String num = request.getParameter("num");
+		String passwordCheck = request.getParameter("passwordCheck");
+		Boolean flag=false;
 		
 		BoardDao dao = new BoardDao();
-		dao.deleteBoard(num);
+		flag = dao.deleteBoard(num, passwordCheck);
 		
-		response.sendRedirect("boardList.jsp");
+		if(flag == true) {
+			response.sendRedirect("boardList.jsp");
+		}else{
+			response.sendRedirect("failDelete.jsp?num="+num);
+		}
 	}
 }

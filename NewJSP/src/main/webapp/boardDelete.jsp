@@ -11,11 +11,15 @@
 </head>
 <body>
 <h1>정말로 삭제하시겠습니까?</h1>
+<h1>비밀 번호를 입력하세요</h1>
 
 <form method="post" action="boardDelete">
+	<input name="passwordCheck" size="30"/>
 	<input type="submit" value="확인"/>
 	<input type="button" value="취소" onclick="history.back()"/>
 	<input type="hidden" name="num" value="<%=num%>"/>
 </form>
+
+
 </body>
 </html>

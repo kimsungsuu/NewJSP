@@ -23,6 +23,7 @@
 	%>
 	<input type="button" onclick="location.href='searchBoard.jsp?search=<%=search%>'" value="검색">
 	</form>
+
 	
 	<table border="1">
 		<tr align="center">

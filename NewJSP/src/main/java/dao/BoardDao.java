@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import dbCon.SqlDbConnection;
 import dto.BoardDto;
@@ -205,25 +206,46 @@ public class BoardDao {
 	}
 	
 	//게시글 삭제
-	public void deleteBoard(String num) {
+	public boolean deleteBoard(String num, String passwordCheck) {
 		Connection con;
 		Statement stmt;
 		PreparedStatement pstmt;
+		PreparedStatement pstmt2;
 		ResultSet rs;
+		String pass="";
+		Boolean flag=false;
 	
 		try {
 			con = dbCon.getConnection();
-			String sql = "delete from board_tb where num=?";
+			
+			String sql = "select password from board_tb where num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, num);
 			
-			pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				pass=rs.getString("password");
+			}
+			
+			if(passwordCheck.equals(pass)) {
+			
+			String sql2 = "delete from board_tb where num=?";
+			pstmt2 = con.prepareStatement(sql2);
+			pstmt2.setString(1, num);
+			
+			pstmt2.executeUpdate();
+			
+			flag=true;
+			}
 			
 			dbCon.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 			System.out.println("deleteBoard SQL Error!!");
 		}
+		
+		return flag;
 	}
 	
 	//게시글 검색
@@ -237,9 +259,9 @@ public class BoardDao {
 		
 		try {
 			con = dbCon.getConnection();
-			String sql = "select * from board_tb where title like ?";
+			String sql = "select * from board_tb where title like ? order by num desc";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "'%"+search+"%'");
+			pstmt.setString(1, "%"+search.trim()+"%");
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -255,6 +277,8 @@ public class BoardDao {
 				
 				searchList.add(bean);
 			}
+			
+			dbCon.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 			System.out.println("searchBoard 메서드 에러입니다.");
