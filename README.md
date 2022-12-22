@@ -14,8 +14,8 @@
 > - 검색
 <details>
   <summary>핵심 기능 상세 내용</summary>
-  dao를 이용한 service 로직 분리
-  <a href="https://www.naver.com/">코드 확인</a>
+  ✔️ dao를 이용한 service 로직 분리
+  <a href="https://github.com/ksungsu/NewJSP/blob/main/NewJSP/src/main/java/dao/BoardDao.java"> 📌 코드 확인</a>
 </details>
 
 * * *
