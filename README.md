@@ -1,8 +1,7 @@
 # 📌 JSP & Servlet
 
-## 1. 프로젝트 제목/주제
-> 제목 : JSP & Servlet을 이용한 게시판 만들기 </br>
-> 주제 : JSP & Servlet, Model2(MVC) 방식으로 게시판을 만들면서 웹 개발 기초 다지기
+## 1. 프로젝트 설명
+> JSP & Servlet, Model2(MVC) 방식으로 게시판을 만들면서 웹 개발 기초 다지기
 
 * * *
 
