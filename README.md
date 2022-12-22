@@ -37,10 +37,14 @@
 
 </br>
 
-## 5. 핵심 트러블 슈팅
+## 5. 핵심 트러블 슈팅 및 문제 해결
 > - HttpServletRequest에 대한 이해부족으로 인해 board id 값(num)이 null로 넘어오는 문제 발생.
 >   - hidden type으로 num 값을 넘겨줘야 한다는 사실을 깨닫고 문제 해결
 >   - [상세 코드](https://github.com/ksungsu/NewJSP/blob/4834392fde7e6ae998e1902210b25d25847c4b72/NewJSP/src/main/webapp/boardRead.jsp#L37)
+> - pageNum 값을 초기화하지 못하는 문제 발생.
+>   - pageNum을 파라미터로 받아올 때 존재하지 않는 값이기 때문에 null로 넘어온다. 
+>   - 따라서 null 값으로 넘어온 pageNum 값을 1로 초기화하여 service 로직 클래스인 dao로 전달
+>   - [상세코드](https://github.com/ksungsu/NewJSP/blob/20715798a86b01a80032008dc579afe6da8d9182/NewJSP/src/main/webapp/boardList.jsp#L42)
  
 
 * * *
