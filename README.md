@@ -3,8 +3,6 @@
 ## 1. 프로젝트 설명
 > JSP & Servlet, Model2(MVC) 방식으로 게시판을 만들면서 웹 개발 기초 다지기
 
-* * *
-
 </br>
 
 ## 2. 주요 기능
@@ -40,6 +38,9 @@
 </br>
 
 ## 5. 핵심 트러블 슈팅
+> - HttpServletRequest에 대한 이해부족으로 인해 board id 값(num)이 null로 넘어오는 문제 발생.
+>   - hidden type으로 num 값을 넘겨줘야 한다는 사실을 깨닫고 문제 해결
+ 
 
 * * *
 
