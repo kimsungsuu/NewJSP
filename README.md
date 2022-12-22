@@ -13,7 +13,9 @@
 > - 페이징
 > - 검색
 <details>
-  <a href="naver.com">코드 확인</a>
+  <summary>핵심 기능 상세 내용</summary>
+  dao를 이용한 service 로직 분리
+  <a href="https://www.naver.com/">코드 확인</a>
 </details>
 
 * * *
