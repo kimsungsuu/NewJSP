@@ -22,3 +22,28 @@
 > - JSP 4.0
 > - Servlet 
 > - MySQL 8.0
+
+* * *
+
+</br>
+
+## 4. ERD 설계
+<img width="473" alt="jsp 게시판 erd" src="https://user-images.githubusercontent.com/90013342/209227060-fa40bbc8-534b-4e07-b9c6-c9f8faba7be4.png">
+
+* * *
+
+</br>
+
+## 5. 핵심 트러블 슈팅
+
+* * *
+
+</br>
+
+## 6. 그 외 트러블 슈팅
+
+* * *
+
+</br>
+
+## 7. 회고/느낀점
