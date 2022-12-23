@@ -4,6 +4,7 @@
     <jsp:useBean id="dao" class="dao.BoardDao"/>
     <%
     	String num = request.getParameter("num");
+    	String pageNum = request.getParameter("pageNum");
     	bean = dao.readBoard(num);
     %>
 <!DOCTYPE html>
@@ -32,7 +33,7 @@
 	</tr>
 </table>
 <input type="button" value="수정" onclick="location.href='boardUpdate.jsp?num=<%=num%>'"/>
-<input type="button" value="목록" onclick="location.href='boardList.jsp'"/>
+<input type="button" value="목록" onclick="location.href='boardList.jsp?pageNum=<%=pageNum%>'"/>
 <input type="button" value="삭제" onclick="location.href='boardDelete.jsp?num=<%=num%>'"/>
 <input type="hidden" name="num " value="<%=num%>"/>
 </body>

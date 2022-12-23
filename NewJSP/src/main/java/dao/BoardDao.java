@@ -22,6 +22,7 @@ import dto.BoardDto;
  * readBoard() // 게시글 읽기
  * updateBoard() // 게시글 수정
  * deleteBoard() // 게시글 삭제
+ * searchBoard() // 게시글 검색
  * */
 
 public class BoardDao {
@@ -131,6 +132,7 @@ public class BoardDao {
 			System.out.println("boardPost 작업 성공!");
 			
 			dbCon.close();
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 			System.out.println("boardPost 메서드 SQL 에러입니다.");
@@ -163,6 +165,7 @@ public class BoardDao {
 			}
 			
 			dbCon.close();
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 			System.out.println("readBoard 메서드 DB 로직 에러입니다!");
@@ -198,6 +201,8 @@ public class BoardDao {
 			pstmt.setString(5, num);
 			
 			pstmt.executeUpdate();
+			
+			dbCon.close();
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -240,6 +245,7 @@ public class BoardDao {
 			}
 			
 			dbCon.close();
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 			System.out.println("deleteBoard SQL Error!!");
@@ -279,6 +285,7 @@ public class BoardDao {
 			}
 			
 			dbCon.close();
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 			System.out.println("searchBoard 메서드 에러입니다.");

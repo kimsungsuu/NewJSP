@@ -3,7 +3,7 @@
 <%@page import="dao.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="dao" class="dao.BoardDao"/>
+	<jsp:useBean id="dao" class="dao.BoardDao"/>
 	<%
 		request.setCharacterEncoding("UTF-8");
 	%>
@@ -58,11 +58,12 @@
 		for (int i = 0; i < list.size(); i++) {
 			BoardDto bean = list.get(i);
 		%>
+		
 		<tr>
 <%-- 			<td><%=count-- %></td> --%>
 			<td><%=bean.getNum()%></td>
 			<td><%=bean.getCategory() %></td>
-			<td><a href="boardRead.jsp?num=<%=bean.getNum()%>"><%=bean.getTitle()%></a></td>
+			<td><a href="boardRead.jsp?num=<%=bean.getNum()%>&pageNum=<%=pageNum%>"><%=bean.getTitle()%></a></td>
 			<td><%=bean.getWriter()%></td>
 			<td><%=bean.getHit() %>
 			<td><%=bean.getCreate_date()%></td>
@@ -119,6 +120,6 @@
 		<%}%>
 		
 		<a href="boardList.jsp?pageNum=<%=nextBlock%>">next</a>
-		
+		<input type="hidden" name="pageNum" value="<%=pageNum%>"/>
 </body>
 </html>
