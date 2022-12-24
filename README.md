@@ -48,13 +48,25 @@
 > - 게시글 상세보기에서 목록을 클릭하면 항상 1페이지로 이동하는 개선점 발견
 >   -  게시글 목록 -> 상세 페이지로 넘어갈 때 pageNum을 hidden 값으로 보내주고, 목록 버튼에 pageNum 값을 추가
 >   - [상세 코드](https://github.com/ksungsu/NewJSP/blob/79b542389b2182c011cce52d7cdc40732de7b85e/NewJSP/src/main/webapp/boardList.jsp#L66)
+
+* * *
+
+</br>
+
+## 6. 기타 백엔드 개발
+> - Model2 방식을 이용한 게시판 개발
+>   - Dto, Dao, JSP, Servlet을 분리하는 MVC 방식
+> - 웹개발의 A - Z까지 직접 구현
+>   - 서블릿환경 직접 구축(톰캣, DB 연결, HttpServeltRequest 메소드.. 등)
+>   - 비즈니스 로직 직접 구현
+>   - MySQL 쿼리 작성, DB 데이터 주입 및 호출.. 등
  
 
 * * *
 
 </br>
 
-## 6. 회고/느낀점
+## 7. 회고/느낀점
 > - 생에 처음으로 개인 프로젝트를 만들어보면서 정말 많은 것을 배운 것 같다. 
 > - "필요에 의한 공부"가 개발 공부법에 가장 적합한 방식이라는 것도 깨닫게 되었다.
 > - JSP 와 Servlet이라는 오래 전에 쓰였던 웹 개발 방식으로 개발해보면서 지금 Spring과 JSP & Servlet은 서로 다르지만 유사한 면모가 분명히 있다는 점도 알게되었다.
