@@ -5,17 +5,14 @@
 
 </br>
 
-## 2. 주요 기능
+## 2. 프로젝트 상세ㅇ
 > - CRUD
 > - 등록 및 수정시 메시지 출력(alert)
 > - 페이징
 > - 검색
-<details>
-  <summary>핵심 기능 상세 내용</summary>
-  ✔️ dao를 이용한 service 로직 분리
-  <a href="https://github.com/ksungsu/NewJSP/blob/main/NewJSP/src/main/java/dao/BoardDao.java"> 📌 코드 확인</a>
-</details>
-
+> - 웹 개발 환경설정(Tomcat, DBConnection, web.xml)
+> - MVC2(Model2) 방식으로 객체 분리
+> - MySQL을 사용하여 데이터 관리
 * * *
 
 </br>
